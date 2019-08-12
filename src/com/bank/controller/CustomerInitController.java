@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +35,7 @@ public class CustomerInitController extends HttpServlet {
 		//		request.setAttribute("empListPojo", customerList);
 		//		RequestDispatcher rd = request.getRequestDispatcher("customerHome.jsp");
 		//		rd.forward(request, response);
-		request.getRequestDispatcher("login.jsp").forward(request, response);
+//		request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	}
 
@@ -60,9 +61,12 @@ public class CustomerInitController extends HttpServlet {
 					customerPojo = customerService.checkCredentials(username, password);
 
 					if (customerPojo!=null) {
-						request.getSession().setAttribute("customer", customerPojo);
+						request.getSession().setAttribute("customerPojo", customerPojo);
+						System.out.println(customerPojo.getName());
 						request.setAttribute("messages", messages);
 						System.out.println("Session Created successfully with id as" + request.getSession().getId());
+						Cookie cookie = new Cookie("username", customerPojo.getUsername());
+						response.addCookie(cookie);
 						request.getRequestDispatcher("customerHome.jsp").forward(request, response);
 					} else {
 						messages.put("login", "Invalid!");
@@ -82,7 +86,7 @@ public class CustomerInitController extends HttpServlet {
 				if(ageStr != null)
 					age = Integer.parseInt(ageStr);
 				String gender = request.getParameter("gender");
-				String cId = request.getParameter("customerId");
+//				String cId = request.getParameter("customerId");
 
 				if(username == null || username.isEmpty()) {
 					messages.put("username", "Please enter Username");
@@ -105,7 +109,7 @@ public class CustomerInitController extends HttpServlet {
 					int customerId = customerService.createCustomer(customerPojo);
 
 					if(customerId!=-1) {
-						request.getSession().setAttribute("customer", customerPojo);
+						request.getSession().setAttribute("customerPojo", customerPojo);
 						request.setAttribute("messages", messages);
 						System.out.println("Session Created successfully with id as" + request.getSession().getId());
 						request.getRequestDispatcher("customerHome.jsp").forward(request, response);

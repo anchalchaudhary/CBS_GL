@@ -30,7 +30,7 @@ abstract public class BaseDao {
 			String username = properties.getProperty("username");
 			String password = properties.getProperty("password");
 
-			Class.forName(driverClass);
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, username, password);
 		} catch (SQLException e) {
 			throw new DBConnectionError("Error in Connection...");

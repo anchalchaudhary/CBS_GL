@@ -3,6 +3,9 @@ function validateCustomerLogin() {
     var validationStatus = true;
     var username = document.forms["customerLogin"]["username"].value;
     var password = document.forms["customerLogin"]["password"].value;
+    
+    
+    
     if(username == "") {
         validationStatus = false;
     } else if(password == "") {
@@ -23,6 +26,13 @@ function validateCustomerRegistration() {
     var password = document.forms["customerRegistration"]["password"].value;
     var age = document.forms["customerRegistration"]["age"].value;
     var radios = document.getElementsByName("gender");
+    
+    var passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+
+    var passwordValidation = false;
+    if(passwordRegex.test(password))
+    	passwordValidation = true;
+    
     if(cname == "") {
         validationStatus = false;
     } else if(username == "") {
@@ -45,10 +55,12 @@ function validateCustomerRegistration() {
     if(!gen) {
         validationStatus = false;
     }
-    if(!validationStatus) {
+    if(!validationStatus && !passwordValidation) {
         alert("Form validation fails");
-    } else{
+    } else if(validationStatus && passwordValidation){
         alert("Success");
+    } else{
+    	alert("Error");
     }
-    return validationStatus;
+    return validationStatus && passwordValidation;
 }

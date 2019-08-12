@@ -7,6 +7,8 @@ public class CustomerPojo {
 	private String password;
 	private int age;
 	private String gender;
+	private String accountNo;
+	private int accountBalance;
 
 	public int getCustomerId() {
 		return customerId;
@@ -43,5 +45,17 @@ public class CustomerPojo {
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	public String getAccountNo() {
+		return accountNo;
+	}
+	public void setAccountNo(String accountNo) {
+		this.accountNo = accountNo;
+	}
+	public int getAccountBalance() {
+		return accountBalance;
+	}
+	public void setAccountBalance(int accountBalance) {
+		this.accountBalance = accountBalance;
 	}
 }

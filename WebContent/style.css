@@ -21,7 +21,7 @@ a {
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	background: url('../images/background.jpg') center no-repeat;
+	background: url('background.jpg') center no-repeat;
 	background-size: cover;
 	margin-left: auto;
 	margin-right: auto;

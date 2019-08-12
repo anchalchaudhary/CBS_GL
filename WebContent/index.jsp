@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" session="false" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Login | SignUp</title>
-<script src="js/validate.js"></script>
-<script src="js/main.js"></script>
+<script src="./validate.js"></script>
+<script src="./main.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.10.0/css/all.css">
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="./style.css" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 </head>
 <body>
+<%@ page errorPage="errorPage.jsp" %>
 	<div id="bg">
 		<div class="module">
 			<ul>
@@ -32,7 +32,7 @@
 			</ul>
 			<div id="login" class="tab-content">
 				<form name="customerLogin" class="form"
-					action="CustomerController?act=login"
+					action="CustomerInitController?act=login"
 					onsubmit="return validateCustomerLogin();" method="post">
 
 					<input type="text" class="textbox" id="username" name="username"
@@ -48,7 +48,7 @@
 			</div>
 			<div id="register" style="display: none;">
 				<form id="register" name="customerRegistration" class="form"
-					action="CustomerController?act=createUser"
+					action="CustomerInitController?act=createUser"
 					onsubmit="return validateCustomerRegistration();" method="post">
 					<input type="text" class="textbox" id="customername" name="cname"
 						placeholder="Enter your name"> <input type="text"

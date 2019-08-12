@@ -11,9 +11,11 @@ public interface CustomerDao {
 
 	CustomerPojo getCustomer(int customerId);
 
-	void updateCustomer(CustomerPojo customerPojo);
+	boolean updateCustomer(CustomerPojo customerPojo);
 
 	void deleteCustomer(int customerId);
 
 	CustomerPojo checkCredentials(String username, String password);
+
+	boolean addMoney(int amount, int customerId);
 }

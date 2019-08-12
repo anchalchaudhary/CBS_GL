@@ -32,9 +32,9 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public void updateCustomer(CustomerPojo customerPojo) {
-		// TODO Auto-generated method stub
+	public boolean updateCustomer(CustomerPojo customerPojo) {
 
+		return customerDao.updateCustomer(customerPojo);
 	}
 
 	@Override
@@ -49,6 +49,12 @@ public class CustomerServiceImpl implements CustomerService{
 		CustomerPojo customerPojo = new CustomerPojo();
 		customerPojo = customerDao.checkCredentials(username, password);
 		return customerPojo;
+	}
+
+	@Override
+	public boolean addMoney(int amount, int customerId) {
+
+		return customerDao.addMoney(amount, customerId);
 	}
 
 }

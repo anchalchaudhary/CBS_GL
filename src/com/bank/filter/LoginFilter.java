@@ -18,12 +18,12 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/LoginFilter")
 public class LoginFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public LoginFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor. 
+	 */
+	public LoginFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -38,16 +38,16 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        HttpSession session = httpServletRequest.getSession(false);
-//        String loginURI = httpServletRequest.getContextPath() + "/index.jsp";
-
+		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+		HttpSession session = httpServletRequest.getSession(false);
+		//        String loginURI = httpServletRequest.getContextPath() + "/index.jsp";
+		System.out.println("dghcv");
 		if (session == null) {
 			System.out.println("Session Null");
 
-			if (httpServletRequest.getRequestURI().endsWith("index.jsp")) {
+			if (httpServletRequest.getRequestURI().endsWith("index.jsp") || httpServletRequest.getRequestURI().endsWith(".js") || httpServletRequest.getRequestURI().endsWith(".css") || httpServletRequest.getRequestURI().endsWith(".jpg")) {
 				chain.doFilter(request, response);
-			} else if (httpServletRequest.getRequestURI().endsWith("CustomerController")) {
+			} else if (httpServletRequest.getRequestURI().contains("CustomerInitController")) {
 				System.out.println("Login");
 				chain.doFilter(request, response);
 			} else {
@@ -59,7 +59,7 @@ public class LoginFilter implements Filter {
 			System.out.println(((HttpServletRequest) request).getSession());
 			chain.doFilter(request, response);
 
-		}
+		}	
 	}
 
 	/**
